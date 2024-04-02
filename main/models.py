@@ -26,7 +26,7 @@ class Event(models.Model):
         return self.title
 
     @property
-    def all_tickets(self):
+    def all_tickets_in_history(self):
         last_history_event = self.history.latest()
         ticket_ids = last_history_event.tickets.values_list("id", flat=True)
         return Ticket.objects.filter(id__in=ticket_ids)
